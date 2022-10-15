@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react'
 
-export default function Card({ item}) {
+export default function Card({item}) {
   return (
-    <Link href={`movies/${item.id}` }>
+    <Link href={`/movies/${item.id}` }>
       <div  className="flex flex-col cursor-pointer group">
         <div className="relative">
           <img
