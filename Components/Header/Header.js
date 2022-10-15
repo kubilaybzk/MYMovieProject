@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Navigation from "./Navigation";
 import { RiMovie2Line } from "react-icons/ri";
+import Link from "next/link";
 export default function Header() {
 
   //Modal'ın açık kapalı olması ile ilgili durumu tutan state.
@@ -15,14 +16,25 @@ export default function Header() {
   const onClose = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
+
   return (
     <>
       <div className="flex flex-row justify-between md:justify-start items-center gap-5 w-full p-4 max-w-[1200px] mx-auto">
         {/* Logo kısmının ayarlandığı alan. */}
-        <div className="flex flex-row gap-2">
+       <Link href={"/"}>
+       <div className="flex flex-row gap-2 cursor-pointer">
           <RiMovie2Line className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-yellow-400" />
           <span className="text-[20px] md:text-[21px] lg:text-[25px] text-yellow-300">TTMovies</span>
         </div>
+       </Link>
         {/* Arama yapma kısmının oluşturulduğu alan Buton olarak ayarlanıp input görüntüsü verildi. */}
         <button
           type="button"

@@ -4,18 +4,9 @@ import SmallCard from "./SmallCard";
 import SearchResults from "./SearchResults";
 export default function Navigation({ setIsOpen, isOpen }) {
  
-  function CloseModal() {
-    setIsOpen(false);
-    document.body.style.overflow = "auto";
-  }
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isOpen]);
+
+
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState();
@@ -74,7 +65,7 @@ export default function Navigation({ setIsOpen, isOpen }) {
             onChange={(e) => Search(e)}
           />
           <button
-            onClick={(e) => CloseModal()}
+            onClick={(e) => setIsOpen(false)}
             className="bg-gray-300 rounded px-4 py-2 hover:bg-gray-500 hover:text-white
             "
           >
