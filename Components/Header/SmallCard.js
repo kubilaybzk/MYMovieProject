@@ -7,27 +7,36 @@ export default function SmallCard({ item }) {
 
 
 
-  let getContext = useContext(MovieContext);
-  let inputvalue = getContext.inputvalue;
-  let setLastSearch = getContext.setLastSearch;
-  let lastSearchs = getContext.lastSearchs;
+let getContext = useContext(MovieContext);
+let inputvalue = getContext.inputvalue;
+
+/* 
+Bu versiyonda son 5 anahtar kelimeyi local storage içinde tuttuk.
+Bir önceki versiyonda datalar context yapısı ile tutuluyordu.
+Context içinden gelen değeri json kullanarak local storage içinde tuttuk.
+*/
 
 
-  //Anahtar kelimeler ile arama yapıldktan sonra o kelimeleri context içinde tutulmasını sağlamak için oluştutulan fonksiyon.
-  //Son 5 Anahtar kelimenin global state içinde tutulmasını sağladığımız alan.
-  function ClickList() {
-    if(lastSearchs===null|| lastSearchs===undefined){
-      lastSearchs=[]
-    }
-    let Array = [...lastSearchs];
-    Array.push(inputvalue);
-    if (Array.length == 6) {
-      Array.shift() 
-      setLastSearch(Array);
-    } else {
-      setLastSearch(Array);
-    }
+function ClickList(e) {
+if(localStorage.getItem("keys")===null || localStorage.getItem("keys")===undefined){
+  localStorage.setItem("keys",[]);
+  //Burada eğer yoksa tanımsız ise hata olmasını engellemek için bir koşul oluşturduk.
+}
+else{
+  var data=JSON.parse(localStorage.getItem("keys")||"[]")
+  if(data.length>=5){
+    data.shift();
+    data.push(inputvalue)
+    // eğer kelime sayısı 5'den fazla ise ilk tutulan eleman yani 0. elemanı kaldırmak istedik.
   }
+  else{
+    data.push(inputvalue)
+    //5'den az ise otomatik olarak arraye push ettik
+  }
+  //koşul sağlandıktan sonra elde edilen veri localstorage içine aktarıldı.
+  localStorage.setItem("keys",JSON.stringify(data))
+}
+}
 
 
 
@@ -37,7 +46,7 @@ export default function SmallCard({ item }) {
     <Link href={`/movies/${item.id}`}>
       <div
       
-      onClick={e=>ClickList()}
+      onClick={e=>ClickList(e)}
       className="w-full flex flex-row items-center justify-start gap-4 hover:bg-gray-400 group cursor-pointer"
     >
        {/*görsel kısmının ayarlandığı alan. */}
