@@ -2,6 +2,9 @@ import React from 'react'
 
 export default function CreditsList({credits}) {
   return (
+
+    <div className=" max-w[1200px] w-full mx-auto p-4 lg:p-10">
+    <span className="text-xl md:text-2xl lg:text-3xl underline font-bold">Oyuncular</span>
     <div className='max-w-[1200px] mx-auto w-full'>
         <div className='grid grid-cols-2 md:gird-col-4 lg:grid-cols-5 p-4 gap-2'>
         {credits.cast.map((item,key)=>{
@@ -15,5 +18,15 @@ export default function CreditsList({credits}) {
         })}
         </div>
     </div>
+  </div>
+
+
+
+
+
+
+
+
+  
   )
 }
