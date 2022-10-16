@@ -7,8 +7,13 @@ export default function Card({item}) {
       <div  className="flex flex-col cursor-pointer group">
         <div className="relative">
           <img
-            className="w-full h-auto rounded-3xl"
-            src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`}
+            className="w-full h-full object-cover rounded-3xl"
+            src={
+              item.poster_path!=null || item.poster_path!=undefined
+                ? `https://image.tmdb.org/t/p/w220_and_h330_face/${item.poster_path}`
+                : `https://via.placeholder.com/214x320`
+            }
+
             alt={`${item.original_title}`}
           />
         </div>
