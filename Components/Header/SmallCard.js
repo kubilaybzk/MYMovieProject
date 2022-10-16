@@ -40,7 +40,7 @@ Context içinden gelen değeri json kullanarak local storage içinde tuttuk.
         <img
           className="w-8 h-8 object-cover"
           src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`}
-          alt={`${item.poster_path}`}
+          alt={`${"alt"}`}
         />
         {/* Tv yada Film fetch işlemleri sonucu database isimlendirmelerinde olan farklılıklar sonucu bu şekil bir sorgu yapmam gerekti. */}
         <span className="text-black group-hover:text-white">
