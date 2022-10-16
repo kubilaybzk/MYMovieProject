@@ -3,12 +3,13 @@ import React from "react";
 export default function Rating({ rate }) {
   let avarage = Math.floor(10 / rate);
   return (
-    <ul class="flex justify-center">
-      {[...Array(avarage)].map((star) => {
+    <ul className="flex justify-center">
+      {[...Array(avarage)].map((star, key) => {
         return (
           <svg
+            key={key}
             aria-hidden="true"
-            class="w-5 h-5 text-yellow-400"
+            className="w-5 h-5 text-yellow-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -18,11 +19,12 @@ export default function Rating({ rate }) {
           </svg>
         );
       })}
-      {[...Array(5 - avarage)].map((star) => {
+      {[...Array(5 - avarage)].map((star, key) => {
         return (
           <svg
+            key={key}
             aria-hidden="true"
-            class="w-5 h-5 text-gray-300 dark:text-gray-500"
+            className="w-5 h-5 text-gray-300 dark:text-gray-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"

@@ -3,10 +3,13 @@ import { createPortal } from "react-dom";
 import Navigation from "./Navigation";
 import { RiMovie2Line } from "react-icons/ri";
 import Link from "next/link";
+import { useRouter } from "next/router";
 export default function Header() {
-
+ 
   //Modal'ın açık kapalı olması ile ilgili durumu tutan state.
   let [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  let path = router.asPath;
 
   //Modal'ın açık kapalı olması ile ilgili forksiyonlar .
   const onOpen = () => {
@@ -17,6 +20,13 @@ export default function Header() {
     setIsOpen(false);
   };
 
+
+ /* Path değişirse aktif olan modalın kapanması için gerekli */
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+    onClose()
+  }, [path]);
+/* Kayma durumunu engellememiz için gerekli olan useEffect değeri */
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -29,12 +39,14 @@ export default function Header() {
     <>
       <div className="flex flex-row justify-between md:justify-start items-center gap-5 w-full p-4 max-w-[1200px] mx-auto">
         {/* Logo kısmının ayarlandığı alan. */}
-       <Link href={"/"}>
-       <div className="flex flex-row gap-2 cursor-pointer">
-          <RiMovie2Line className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-yellow-400" />
-          <span className="text-[20px] md:text-[21px] lg:text-[25px] text-yellow-300">TTMovies</span>
-        </div>
-       </Link>
+        <Link href={"/"}>
+          <div className="flex flex-row gap-2 cursor-pointer">
+            <RiMovie2Line className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-yellow-400" />
+            <span className="text-[20px] md:text-[21px] lg:text-[25px] text-yellow-300">
+              TTMovies
+            </span>
+          </div>
+        </Link>
         {/* Arama yapma kısmının oluşturulduğu alan Buton olarak ayarlanıp input görüntüsü verildi. */}
         <button
           type="button"
@@ -55,7 +67,7 @@ export default function Header() {
       {/* Modal'ın render olması için gerekli olan alan. */}
       {isOpen &&
         createPortal(
-          <Navigation setIsOpen={setIsOpen} isOpen={isOpen}  />,
+          <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />,
           document.body
         )}
     </>

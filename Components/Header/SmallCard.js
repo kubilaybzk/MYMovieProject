@@ -1,13 +1,30 @@
 import Link from "next/link";
-import React from "react";
+import React, from "react";
 import {BiCameraMovie} from 'react-icons/bi'
 import {FaTv} from 'react-icons/fa'
+import { MovieContext } from "../../Context/MovieContext";
 export default function SmallCard({ item, key }) {
+
+
+
+
+
+  function ClickList(e){
+    let Array=[]
+    Array.push(input)
+    SetlastSearchData({...lastSearchData,Array})
+    console.log("lastSearchData",lastSearchData)
+  }
+
+
+
+
    {/* Arama sonuçlarının listelendiği kısımda her bir sonucun render edilmesi için gerekli olan comp. */}
   return (
     <Link href={`/movies/${item.id}`}>
       <div
       key={key}
+      onClick={e=>ClickList(e)}
       className="w-full flex flex-row items-center justify-start gap-4 hover:bg-gray-400 group cursor-pointer"
     >
        {/*görsel kısmının ayarlandığı alan. */}
