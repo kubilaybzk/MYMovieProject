@@ -6,9 +6,9 @@ export default function CommentList({ commentsdata }) {
     <div className=" max-w[1200px] w-full mx-auto p-4 lg:p-10">
       <span className="text-xl md:text-2xl lg:text-3xl underline font-bold">Yorumlar</span>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-4">
-        {commentsdata.results.map((item, key) => {
+        {commentsdata.results.length>1?commentsdata.results.map((item, key) => {
           return (
-            <div className="w-full px-4">
+            <div className="w-full px-4" key={key}>
               <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
                 <Disclosure>
                   {({ open }) => (
@@ -36,7 +36,7 @@ export default function CommentList({ commentsdata }) {
               </div>
             </div>
           );
-        })}
+        }):<span className="text-xs md:text-sm lg:text-base">Henüz bir yorum yapılmamış</span>}
       </div>
     </div>
   );

@@ -82,21 +82,21 @@ export default function MoviesDetails({ MovieInformations,similar_movies,MoviesI
 
 export async function getServerSideProps({ params }) {
   const GetMovieInformations = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR`
+    `https://api.themoviedb.org/3/movie/${params.id}?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR`
   );
   const GetSimilarMovies = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR`
+    `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR`
   );
   const GetMoviesImages = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=e74583c7b5a0ac88be452c579457ee9d`
+    `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${process.env.NEXT_PUBLIC_API}`
   );
   
   const GetCredits = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=e74583c7b5a0ac88be452c579457ee9d&language=en-US`
+    `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=${process.env.NEXT_PUBLIC_API}&language=en-US`
   );
   
   const GetComments = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/reviews?api_key=e74583c7b5a0ac88be452c579457ee9d&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/${params.id}/reviews?api_key=${process.env.NEXT_PUBLIC_API}&language=en-US&page=1`
   );
 
 

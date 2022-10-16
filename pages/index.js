@@ -19,15 +19,15 @@ export default function Home({ UpComing,Popular,TopRated }) {
 export async function getServerSideProps() {
   // Fetch data from external API
   const UpComingList = await fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR&page=1`
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR&page=1&region=TR`
   );
 
   const PopularList = await fetch(
-    ` https://api.themoviedb.org/3/movie/popular?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR&page=1`
+    ` https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR&page=1`
   );
 
   const TopRatedList = await fetch(
-    ` https://api.themoviedb.org/3/movie/popular?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR&page=1`
+    ` https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR&page=1`
   );
  
   const UpComing = await UpComingList.json();
