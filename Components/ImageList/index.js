@@ -22,7 +22,7 @@ export default function ImageList({ MoviesImages }) {
                 return (
                   <div key={key} className="snap-center shrink-0">
                     <img
-                      className="shrink-0 w-80 h-80 rounded-lg shadow-xl bg-white"
+                      className="shrink-0 w-50 h-30 rounded-lg shadow-xl bg-white"
                       src={
                         item.file_path!=null || item.file_path!=undefined
                           ? `https://image.tmdb.org/t/p/w220_and_h330_face/${item.file_path}`
