@@ -15,6 +15,7 @@ export default function ImageList({ MoviesImages }) {
                     <img
                       className="shrink-0 w-80 h-60 rounded-lg shadow-xl bg-white"
                       src={`https://image.tmdb.org/t/p/w220_and_h330_face/${item.file_path}`}
+                      alt={`${item.file_path}`}
                     />
                   </div>
                 );

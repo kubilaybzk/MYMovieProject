@@ -7,7 +7,7 @@ export default function CreditsList({credits}) {
         {credits.cast.map((item,key)=>{
             return(
                 <div key={key} className='border-2 border-black flex flex-col p-4'>
-                    <img src={`https://image.tmdb.org/t/p/w220_and_h330_face/${item.profile_path}`} />
+                    <img src={`https://image.tmdb.org/t/p/w220_and_h330_face/${item.profile_path}`} alt={`${item.character}`} />
                     <span className='text-xs md:text-sm lg:text-base'><b>İsim:</b>{item.name}</span>
                     <span className='text-xs md:text-sm lg:text-base'><b>Karakter:</b>{item.character}</span>
                 </div>

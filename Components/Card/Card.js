@@ -9,6 +9,7 @@ export default function Card({item}) {
           <img
             className="w-full h-auto rounded-3xl"
             src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`}
+            alt={`${item.original_title}`}
           />
         </div>
         <div className="w-full p-2  bottom-0 h-full flex flex-col justify-start">

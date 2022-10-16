@@ -1,19 +1,32 @@
 import Link from "next/link";
-import React, from "react";
+import React,{ useContext } from "react";
 import {BiCameraMovie} from 'react-icons/bi'
 import {FaTv} from 'react-icons/fa'
 import { MovieContext } from "../../Context/MovieContext";
-export default function SmallCard({ item, key }) {
+export default function SmallCard({ item }) {
 
 
 
+  let getContext = useContext(MovieContext);
+  let inputvalue = getContext.inputvalue;
+  let setLastSearch = getContext.setLastSearch;
+  let lastSearchs = getContext.lastSearchs;
 
 
-  function ClickList(e){
-    let Array=[]
-    Array.push(input)
-    SetlastSearchData({...lastSearchData,Array})
-    console.log("lastSearchData",lastSearchData)
+  //Anahtar kelimeler ile arama yapıldktan sonra o kelimeleri context içinde tutulmasını sağlamak için oluştutulan fonksiyon.
+  //Son 5 Anahtar kelimenin global state içinde tutulmasını sağladığımız alan.
+  function ClickList() {
+    if(lastSearchs===null|| lastSearchs===undefined){
+      lastSearchs=[]
+    }
+    let Array = [...lastSearchs];
+    Array.push(inputvalue);
+    if (Array.length == 6) {
+      Array.shift() 
+      setLastSearch(Array);
+    } else {
+      setLastSearch(Array);
+    }
   }
 
 
@@ -23,14 +36,15 @@ export default function SmallCard({ item, key }) {
   return (
     <Link href={`/movies/${item.id}`}>
       <div
-      key={key}
-      onClick={e=>ClickList(e)}
+      
+      onClick={e=>ClickList()}
       className="w-full flex flex-row items-center justify-start gap-4 hover:bg-gray-400 group cursor-pointer"
     >
        {/*görsel kısmının ayarlandığı alan. */}
       <img
         className="w-8 h-8 object-cover"
         src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`}
+        alt={`${item.poster_path}`}
       />
        {/* Tv yada Film fetch işlemleri sonucu database isimlendirmelerinde olan farklılıklar sonucu bu şekil bir sorgu yapmam gerekti. */}
       <span className="text-black group-hover:text-white">{item.original_name?item.original_name:item.original_title?item.original_title:null}</span>

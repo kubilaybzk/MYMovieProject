@@ -2,20 +2,16 @@ import React, { useState, useContext } from "react";
 const MovieContext = React.createContext();
 
 const MovieProvider = ({ children }) => {
- 
-    const [ınputvalue,setInputValue]=useState([]);
-    const [lastSearchs,setLastSearch]=useState([]);
-
-
+  const [inputvalue, setInputValue] = useState([]); //İnput değerinin global olarak tutulduğu bir state.
+  const [lastSearchs, setLastSearch] = useState(); //son arama anahtar kelimelerinin tutulduğu state.
 
   return (
     <MovieContext.Provider
       value={{
         setInputValue,
         setLastSearch,
-        ınputvalue,
-        lastSearchs
-
+        inputvalue,
+        lastSearchs,
       }}
     >
       {children}

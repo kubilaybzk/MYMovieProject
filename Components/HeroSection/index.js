@@ -14,7 +14,7 @@ export default function HeroSection() {
         </div>
         {/* Sağ taraf - resim kısmının olduğu alan.*/}
         <div className="hidden lg:mt-0 lg:col-span-5 md:flex">
-            <img src="https://thenextfuture.b-cdn.net/wp-content/uploads/2022/05/CineTrak-1024x800.png" alt="mockup"/>
+            <img src="https://thenextfuture.b-cdn.net/wp-content/uploads/2022/05/CineTrak-1024x800.png" alt="AppScreenShots"/>
         </div> 
 
     </div>

@@ -1,11 +1,15 @@
-import React, {  useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
+import { MovieContext } from "../../Context/MovieContext";
+import LastKeys from "./LastKeys";
 import SearchResults from "./SearchResults";
 
 export default function Navigation({ setIsOpen, isOpen }) {
  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState();
-
+  let getContext = useContext(MovieContext);
+  let SetInput = getContext.setInputValue;
+ 
   async function Search(e) {
     SetInput(e.target.value)
     if (
@@ -19,7 +23,7 @@ export default function Navigation({ setIsOpen, isOpen }) {
       setLoading(true);
 
       let result = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=e74583c7b5a0ac88be452c579457ee9d&language=en-US&query=${e.target.value}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR&query=${e.target.value}&page=1&include_adult=false`
       );
       let a = await result.json();
       let b = a.results;
@@ -66,6 +70,7 @@ export default function Navigation({ setIsOpen, isOpen }) {
           </button>
         </label>
       {/* Arama sonuçlarının listelenmesi için geliştirilen alan. */}
+        <LastKeys/>
         <SearchResults  loading={loading} data={data}/>
       </div>
     </div>

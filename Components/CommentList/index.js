@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CommentList({commentsdata}) {
-  console.log(commentsdata.results)
+  
     return (
       <div className='max-w-[1200px] mx-auto w-full'>
       <div className='grid grid-cols-1  p-4  gap-4'>

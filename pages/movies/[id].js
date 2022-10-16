@@ -10,7 +10,7 @@ import MovieList from "../../Components/MovieList";
 export default function MoviesDetails({ MovieInformations,similar_movies,MoviesImages,Credits,CommentsData}) {
   let backdrop_path_with_url ="https://image.tmdb.org/t/p/original" + MovieInformations.backdrop_path;
 
-  console.log(MovieInformations);
+
 
   return (
     <Layout>
