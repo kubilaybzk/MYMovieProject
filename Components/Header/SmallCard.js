@@ -15,16 +15,18 @@ Context içinden gelen değeri json kullanarak local storage içinde tuttuk.
 
   function ClickList(e) {
     var data = JSON.parse(localStorage.getItem("keys") || "[]");
-    if (data.length >= 5) {
-      data.shift();
-      data.push(inputvalue);
-      // eğer kelime sayısı 5'den fazla ise ilk tutulan eleman yani 0. elemanı kaldırmak istedik.
-    } else {
-      data.push(inputvalue);
-      //5'den az ise otomatik olarak arraye push ettik
+    if (!data.includes(inputvalue)) {
+      if (data.length >= 5) {
+        data.shift();
+        data.push(inputvalue);
+        // eğer kelime sayısı 5'den fazla ise ilk tutulan eleman yani 0. elemanı kaldırmak istedik.
+      } else {
+        data.push(inputvalue);
+        //5'den az ise otomatik olarak arraye push ettik
+      }
+      //koşul sağlandıktan sonra elde edilen veri localstorage içine aktarıldı.
+      localStorage.setItem("keys", JSON.stringify(data));
     }
-    //koşul sağlandıktan sonra elde edilen veri localstorage içine aktarıldı.
-    localStorage.setItem("keys", JSON.stringify(data));
   }
 
   {
@@ -40,7 +42,7 @@ Context içinden gelen değeri json kullanarak local storage içinde tuttuk.
         <img
           className="w-8 h-8 object-cover"
           src={
-            item.poster_path!=null || item.poster_path!=undefined
+            item.poster_path != null || item.poster_path != undefined
               ? `https://image.tmdb.org/t/p/w220_and_h330_face/${item.poster_path}`
               : `https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=`
           }
