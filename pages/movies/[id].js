@@ -18,7 +18,7 @@ export default function MoviesDetails({
     "https://image.tmdb.org/t/p/original" + MovieInformations.backdrop_path;
 
   return (
-    <Layout>
+    <Layout Title={MovieInformations.original_title}>
       <div
         className="w-full relative rounded-3xl"
         style={{
