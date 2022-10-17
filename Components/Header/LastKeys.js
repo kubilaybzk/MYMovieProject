@@ -15,7 +15,7 @@ export default function LastKeys() {
   return (
     <div className="flex flex-col w-full  mt-4">
       <span className="font-bold">Son aramalar:</span>
-      <div className="flex flex-row gap-5">
+      <div className="grid  grid-cols-2 md:grid-cols-3  gap-2">
         {/* Son aramalar boş ise ekrana son armaa yok yazacak varsa listeyi basacak*/}
         {lastSearchs ? (
           lastSearchs.map((item, key) => {

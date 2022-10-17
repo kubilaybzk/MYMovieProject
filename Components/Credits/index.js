@@ -7,7 +7,7 @@ export default function CreditsList({ credits }) {
         Oyuncular
       </span>
       <div className="max-w-[1200px] mx-auto w-full">
-        <div className="grid grid-cols-2 md:gird-col-4 lg:grid-cols-5 p-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-4 gap-2">
           {credits.cast.map((item, key) => {
             return (
               <div
