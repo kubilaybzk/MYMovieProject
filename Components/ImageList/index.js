@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ImageList({ MoviesImages }) {
-  console.log(MoviesImages);
   return (
     <div
       className={

@@ -15,7 +15,7 @@ export default function MoviesDetails({ MovieInformations,similar_movies,MoviesI
   return (
     <Layout>
       <div
-        className="w-full relative"
+        className="w-full relative rounded-3xl"
         style={{
           backgroundImage: `url(${backdrop_path_with_url})`,
           backgroundSize: "cover",
