@@ -1,23 +1,58 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function ImageList({ MoviesImages }) {
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper";
+
+export default function App({ MoviesImages }) {
   return (
-    <div
-      className={
-        `flex flex-col max-w[1200px] gap-2 p-4 lg:p-10` +
-          MoviesImages.posters.length >
-        1
-          ? `mx-auto`
-          : null
-      }
-    >
-      <span className="text-xl md:text-2xl lg:text-3xl underline font-bold">{`Resimler`}</span>
-      <div className="not-prose relative  rounded-xl overflow-hidden max-w-[870px] md:max-w-[1200px] lg:max-w-full mx-auto">
-        <div className="absolute inset-0  "></div>
-        <div className="relative rounded-xl overflow-auto">
-          <div className="relative">
-            <div className="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto py-14">
-              {MoviesImages.posters.map((item, key) => {
+    <div className="triple-slider w-full hidden lg:block">
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={false}
+        slidesPerView={"3"}
+        loop={true}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        pagination={true}
+        modules={[EffectCoverflow]}
+        className="mySwiper"
+      >
+        {MoviesImages.posters.map((item, key) => {
+          return (
+            <SwiperSlide key={key}>
+              <img
+                className="shrink-0 w-50 h-30 rounded-lg shadow-xl bg-white"
+                src={
+                  item.file_path != null || item.file_path != undefined
+                    ? `https://image.tmdb.org/t/p/w220_and_h330_face/${item.file_path}`
+                    : `https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png`
+                }
+                alt={`${item.file_path}`}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
+}
+
+/*
+
+     {MoviesImages.posters.map((item, key) => {
                 return (
                   <div key={key} className="snap-center shrink-0">
                     <img
@@ -32,10 +67,4 @@ export default function ImageList({ MoviesImages }) {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+*/

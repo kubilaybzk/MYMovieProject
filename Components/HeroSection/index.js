@@ -4,7 +4,7 @@ export default function HeroSection() {
     //Hero section'ın olduğu alan.
     // boyuta göre düzenleme yapıldı.
   return (
-    <section className="bg-gray-900">
+    <section className="bg-gray-900 rounded-md p-4">
     <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 md:grid-cols-2">
             {/* Sol Taraf Text kısmının olduğu alan.*/}
         <div className="mr-auto place-self-center md:col-2 lg:col-span-7">

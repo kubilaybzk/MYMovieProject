@@ -22,7 +22,12 @@ export default function CommentList({ commentsdata }) {
                               <div className="rounded-full overflow-hidden ">
                                 <img
                                   className="w-8 h-8 object-cover"
-                                  src={`https://image.tmdb.org/t/p/w220_and_h330_face${item.author_details.avatar_path}`}
+                                  src={
+                                    item.author_details.avatar_path!=null || item.author_details.avatar_path!=undefined
+                                    ? `https://image.tmdb.org/t/p/w220_and_h330_face${item.author_details.avatar_path}`
+                                    : `https://via.placeholder.com/214x320`
+                                    
+                                    }
                                 />
                               </div>
 

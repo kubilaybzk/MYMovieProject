@@ -7,10 +7,15 @@ import ImageList from "../../Components/ImageList";
 import Layout from "../../Components/Layout";
 import MovieList from "../../Components/MovieList";
 
-export default function MoviesDetails({ MovieInformations,similar_movies,MoviesImages,Credits,CommentsData}) {
-  let backdrop_path_with_url ="https://image.tmdb.org/t/p/original" + MovieInformations.backdrop_path;
-
-
+export default function MoviesDetails({
+  MovieInformations,
+  similar_movies,
+  MoviesImages,
+  Credits,
+  CommentsData,
+}) {
+  let backdrop_path_with_url =
+    "https://image.tmdb.org/t/p/original" + MovieInformations.backdrop_path;
 
   return (
     <Layout>
@@ -70,12 +75,10 @@ export default function MoviesDetails({ MovieInformations,similar_movies,MoviesI
           </div>
         </div>
       </div>
+      <ImageList MoviesImages={MoviesImages} />
       <MovieList data={similar_movies} Title={`Benzer Filmler`} />
-      <ImageList MoviesImages={MoviesImages}/>
-      <CreditsList credits={Credits}/>
-      <CommentList commentsdata={CommentsData}/>
-      
-
+      <CreditsList credits={Credits} />
+      <CommentList commentsdata={CommentsData} />
     </Layout>
   );
 }
@@ -90,20 +93,27 @@ export async function getServerSideProps({ params }) {
   const GetMoviesImages = await fetch(
     `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${process.env.NEXT_PUBLIC_API}`
   );
-  
+
   const GetCredits = await fetch(
     `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=${process.env.NEXT_PUBLIC_API}&language=en-US`
   );
-  
+
   const GetComments = await fetch(
     `https://api.themoviedb.org/3/movie/${params.id}/reviews?api_key=${process.env.NEXT_PUBLIC_API}&language=en-US&page=1`
   );
-
 
   const MovieInformations = await GetMovieInformations.json();
   const similar_movies = await GetSimilarMovies.json();
   const MoviesImages = await GetMoviesImages.json();
   const Credits = await GetCredits.json();
   const CommentsData = await GetComments.json();
-  return { props: { MovieInformations,similar_movies,MoviesImages,Credits,CommentsData } };
+  return {
+    props: {
+      MovieInformations,
+      similar_movies,
+      MoviesImages,
+      Credits,
+      CommentsData,
+    },
+  };
 }
