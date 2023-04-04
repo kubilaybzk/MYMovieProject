@@ -17,7 +17,7 @@ export default function SearchResults({ loading, data }) {
         data&&data.map((item, key) => {
           if (item.original_name || item.original_title) {
             {
-              /*Bazı datalarda name bazı datalarda orjinal title olarak girili lduğunu fark ettim bundan dolayı bu şekilde bir sorgu oluşturdum. */
+              /*Bazı datalarda name bazı datalarda orjinal s title olarak girili lduğunu fark ettim bundan dolayı bu şekilde bir sorgu oluşturdum. */
             }
             return <SmallCard  item={item} key={key} />;
           } else {
