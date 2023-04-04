@@ -1,17 +1,16 @@
-import React, {  useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../../Context/MovieContext";
 import LastKeys from "./LastKeys";
 import SearchResults from "./SearchResults";
 
 export default function Navigation({ setIsOpen, isOpen }) {
- 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState();
   let getContext = useContext(MovieContext);
   let SetInput = getContext.setInputValue;
- 
+
   async function Search(e) {
-    SetInput(e.target.value)
+    SetInput(e.target.value);
     if (
       e.target.value === null ||
       e.target.value === " " ||
@@ -23,20 +22,20 @@ export default function Navigation({ setIsOpen, isOpen }) {
       setLoading(true);
 
       let result = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=e74583c7b5a0ac88be452c579457ee9d&language=tr-TR&query=${e.target.value}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API}&language=tr-TR&query=${e.target.value}&page=1&include_adult=false`
       );
       let a = await result.json();
-      let b = a.results;
-      await setData(b);
+      let b = await a.results;
+      setData(b);
       setLoading(false);
     }
   }
 
-
- {/* Burası modal kısmı mobil kısmında tam ekran tablet ve web kısmında full olarak render olan kısım. */}
+  {
+    /* Burası modal kısmı mobil kısmında tam ekran tablet ve web kısmında full olarak render olan kısım. */
+  }
 
   return (
-    
     <div
       className={`
      w-screen h-screen absolute top-0 left-0 
@@ -69,9 +68,9 @@ export default function Navigation({ setIsOpen, isOpen }) {
             Kapat
           </button>
         </label>
-      {/* Arama sonuçlarının listelenmesi için geliştirilen alan. */}
-        <LastKeys/>
-        <SearchResults  loading={loading} data={data}/>
+        {/* Arama sonuçlarının listelenmesi için geliştirilen alan. */}
+        <LastKeys />
+        <SearchResults loading={loading} data={data} />
       </div>
     </div>
   );
